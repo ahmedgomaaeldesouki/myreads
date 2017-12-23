@@ -12,7 +12,7 @@ class BooksApp extends React.Component {
   state = {
     books: [],
     showSearchPage: false
-  }
+  } // state
 
   componentDidMount() {
    this.fetchMyBooks()
@@ -22,7 +22,7 @@ class BooksApp extends React.Component {
   fetchMyBooks () {
     BooksAPI.getAll()
     .then((books) => {
-    this.setState ({books: books})
+    this.setState ({books})
     })
   
   } // fetchMyBooks
@@ -30,11 +30,9 @@ class BooksApp extends React.Component {
 
 handleShelfChange =  (id, shelf) => {
     BooksAPI.update({id},shelf)
-            .then ( (data) => { 
+            .then ( () => { 
               this.fetchMyBooks()
-                // console.log (data) 
-             })
-            
+             })          
   } // handleShelfChange
   
   render() {
