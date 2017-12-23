@@ -6,8 +6,6 @@ import { PropTypes } from 'prop-types'
 // components
 import BookShelf from './BookShelf'
 
-const newLocal = 'Currently Reading';
-
  class Library extends Component {
 
     static propTypes = {
@@ -21,29 +19,37 @@ const newLocal = 'Currently Reading';
         onMovingBook: PropTypes.func.isRequired
       }
 
- shelves = [
-    {shelfTitle: newLocal, shelfName :'currentlyReading'},
-    {shelfTitle: 'Want To Read',  shelfName : 'wantToRead'},
-    {shelfTitle: 'Read' , shelfName : 'read'}
- ]
+    shelves = [
+        {
+            shelfTitle: 'Currently Reading', 
+            shelfName :'currentlyReading'
+        },
+        {
+            shelfTitle: 'Want To Read',
+            shelfName : 'wantToRead'
+        },
+        {
+            shelfTitle: 'Read',
+            shelfName : 'read'
+        }
+    ]
  
-
-
- handleShelfChange=(id,shelf)=>{
-   this.props.onMovingBook(id,shelf)
- }
+    //  a property function to handle shelf change 
+    handleShelfChange=(id,shelf)=>{
+    this.props.onMovingBook(id,shelf)
+    }
 
     render() {
     const books = this.props.books;
      let ShelfBooks;
-
+     // iterating through the shelves array to build an new array of BookShelf components
      ShelfBooks = this.shelves.map ( 
          (shelf,index) => <BookShelf title={shelf.shelfTitle} 
                                      key={index} 
                                      books={books.filter( (book) =>book.shelf === shelf.shelfName  ) } 
                                      onMovingBook={this.handleShelfChange } 
                             />  
-                     )
+                     ) //map 
 
         return (
             <div className="list-books">
@@ -52,13 +58,13 @@ const newLocal = 'Currently Reading';
                  </div>
                  <div> {ShelfBooks}</div> 
                     <div className="open-search">
-                    <Link
-                        to="/Search"
-                    >Add a book</Link>
+                        <Link
+                            to="/Search"
+                        >Add a book</Link>
                     </div>
              </div>
-        );
-    }
+        ); // return
+    } //render
 }
 
 

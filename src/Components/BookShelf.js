@@ -12,16 +12,16 @@ import Book from  './Books'
         onMovingBook: PropTypes.func.isRequired
       }
     
-  handleShelfChange = (id,shelf) => {
-    this.props.onMovingBook(id,shelf)
-  }    
+    handleShelfChange = (id,shelf) => {
+      this.props.onMovingBook(id,shelf)
+    }    
 
     render() {
     
        const  books = this.props.books
-        let shelfbooks;
+       // an Array hold a a list of book components 
+       let shelfbooks;
         shelfbooks=books.map((book,index) => { 
-          
             return (
                 <Book key={index} 
                       id={book.id}
@@ -30,7 +30,6 @@ import Book from  './Books'
                       bookimage={book.imageLinks}
                       shelf={book.shelf !==''  ?book.shelf: `none` }
                       onMovingBook={this.handleShelfChange}
-              
                        />
             ) // return
 
@@ -43,7 +42,7 @@ import Book from  './Books'
                   <div className="bookshelf-books"> 
                      <ol className="books-grid">
                          {shelfbooks}
-                        </ol>  
+                      </ol>  
                   </div>
 
                 </div>
