@@ -60,7 +60,7 @@ class Search extends Component {
     searchBooks = (query) => {
         if (query.length > 0 ) {
 
-         BooksAPI.search(query)
+         BooksAPI.search(query,12)
             .then ( (searchResults) => {
               //  console.log (this.props.myBooks)
                 if (searchResults.length > 0) {
